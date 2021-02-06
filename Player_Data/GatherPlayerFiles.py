@@ -68,7 +68,7 @@ async def main():
     data.columns = ["Name", "Chance of playing this round", "Chance of playing next round", "code", "Position", "Live cost", "PPG"
                     , "Percentage owned", "Team", "Total points", "Minutes Played", "Goals Scored", "Assists", "Clean sheets",
                      "Goals Conceded", "Penalties Saved", "Penalties Missed", "Yellow Cards", "Saves", "Bonus", "ICT"]
-
+    data = data[data["Chance of playing next round"]!=0]
     data.to_csv("Players.csv")
     for i in array:
         print(i)
