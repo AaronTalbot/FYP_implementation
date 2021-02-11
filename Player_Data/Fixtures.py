@@ -8,8 +8,8 @@ async def main():
         Results_array = []
         Fixtures_array = []
         for i in range(1, 381):
-            if(i == 153 or i == 170 or i == 180 or i == 160 or
-            i == 321 or i == 172 or i == 325):
+            if(i == 170 or i == 180 or
+            i == 321 or i == 325):
                 pass
             else:
                 fixture = await fpl.get_fixture(i)
