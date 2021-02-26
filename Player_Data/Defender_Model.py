@@ -2,30 +2,35 @@ import pandas as pd
 import numpy as np
 from sklearn import model_selection
 from sklearn import linear_model
+from sklearn.metrics import mean_absolute_error
 
 data = pd.read_csv("Players.csv")
-data = data[data["Chance of playing next round"] != 0]
+# data = data[data["Chance of playing next round"] != 0]
 data = data[data["Chance of playing next round"].notna()]
 
 Defenders = data[data["Position"] == 2]
 
 Defenders = Defenders[["Total points", "Minutes Played", "Yellow Cards",
-                                "Clean sheets", "Goals Conceded", "Assists", "PPG"]]
+                                "Clean sheets", "Goals Conceded", "Assists", "PPG", "Fixture_Strength", "Result_Strength","GWPoints"]]
 
 Total_Defenders = Defenders.shape[0]
 Train = round((Total_Defenders /10)*8)
 
 Test_Defenders = Defenders[["Total points", "Minutes Played", "Yellow Cards",
-                                "Clean sheets", "Goals Conceded", "Assists"]]
+                                "Clean sheets", "Goals Conceded", "Assists","Result_Strength"]]
 
-Test_Defenders_PPG = Defenders[["PPG"]]
+Test_Defenders_PPG = Defenders[["GWPoints"]]
 
 Train_Defenders_Data = Test_Defenders.head(Train)
 Train_Defenders_Target = Test_Defenders_PPG.head(Train)
 
 Test_Defenders_Data = Test_Defenders.tail(Total_Defenders-Train)
-Test_Defenders_Target = Test_Defenders.tail(Total_Defenders-Train)
+Test_Defenders_Target = Test_Defenders_PPG.tail(Total_Defenders-Train)
 kf = model_selection.KFold(n_splits=6,shuffle=True)
+classifiers = []
+accuracy = []
+test_accuracies = []
+count = 0
 
 for train_index,test_index in kf.split(Train_Defenders_Data.values):
     classifier = linear_model.LinearRegression()
@@ -33,4 +38,10 @@ for train_index,test_index in kf.split(Train_Defenders_Data.values):
     # Predict_train = classifier.predict(Train_Midfeilders_Data.values[test_index])
     # print(metrics.accuracy_score(Train_Midfeilders_Target.values[test_index],Predict_train))
     test_predict = classifier.predict(Train_Defenders_Data.values[test_index])
-    print(np.concatenate((test_predict.reshape(len(test_predict),1),Train_Defenders_Target.values[test_index].reshape(len(test_predict),1)),1))
+    print("Train Mean absolute error for split " + str(count) + " : ", mean_absolute_error(Train_Defenders_Target.values[test_index], test_predict))
+    accuracy.append(mean_absolute_error(Train_Defenders_Target.values[test_index], test_predict))
+    test_pred = classifier.predict(Test_Defenders_Data.values)
+    print("Test  Mean absolute error for split " + str(count) + " : ",mean_absolute_error(Test_Defenders_Target.values,test_pred))
+    test_accuracies.append(mean_absolute_error(Test_Defenders_Target.values,test_pred))
+    count += 1
+    print("-"*50)
