@@ -12,12 +12,12 @@ async def main():
             id = team.id
             name = team.name
             short_name = team.short_name
-            strength_overall_home = team.strength_overall_home
-            strength_overall_away = team.strength_overall_away
-            arr = [id,name,short_name,strength_overall_home,strength_overall_away]
+            strength_overall = ((team.strength_overall_home + team.strength_overall_away)/2)
+
+            arr = [id,name,short_name,strength_overall,]
             array.append(arr)
          data = pd.DataFrame.from_records(array)
-         data.columns = ["ID", "Name", "Short_Name", "strength_overall_home", "strength_overall_away"]
+         data.columns = ["ID", "Name", "Short_Name", "strength_overall"]
          data.to_csv("Teams.csv")
 
 asyncio.run(main())

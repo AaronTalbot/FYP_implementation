@@ -14,6 +14,8 @@ Midfielders = Midfielders[["PPG", "Total points", "Minutes Played", "Goals Score
 
 Total_Midfielders = Midfielders.shape[0]
 Train = round((Total_Midfielders / 10) * 8)
+print(Total_Midfielders)
+print(Train)
 
 Test_Midfielders = Midfielders[["Total points", "Minutes Played", "Goals Scored", "Assists",
                                       "Clean sheets", "Yellow Cards", "Bonus", "ICT"]]

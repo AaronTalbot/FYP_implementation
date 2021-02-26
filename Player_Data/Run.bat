@@ -1,4 +1,5 @@
 @echo off
-python GatherPlayerFiles.py
 python Teams.py
+python GatherPlayerFiles.py
 python Fixtures.py
+python Testing.py

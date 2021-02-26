@@ -61,19 +61,16 @@ async def main():
         saves = i.saves
         bonus = i.bonus
         ICT = i.ict_index
-        Fixture_Strength = 0
-        Result_Strength = 0
-        Predicted_points = 0
-        arr = [full_name, Chance_of_playing_t_R, Chance_of_Playing, code, position, cost, PPG, points, Per, team, total_points, mins, Goals, Assists, CS, goals_conceded
-                  , penalties_saved , penalties_missed, yellow_cards, saves, bonus, ICT, Fixture_Strength, Result_Strength, Predicted_points]
+        arr = [full_name, Chance_of_playing_t_R, Chance_of_Playing, code, position, cost, PPG, points, Per, team, total_points, mins, Goals, Assists, CS, goals_conceded,
+                  penalties_saved, penalties_missed, yellow_cards, saves, bonus, ICT]
         array.append(arr)
 
     data = pd.DataFrame.from_records(array)
     data.columns = ["Name", "Chance of playing this round", "Chance of playing next round", "code", "Position", "Live cost", "PPG"
-                    ,"GWPoints", "Percentage owned", "Team", "Total points", "Minutes Played", "Goals Scored", "Assists", "Clean sheets",
-                     "Goals Conceded", "Penalties Saved", "Penalties Missed", "Yellow Cards", "Saves", "Bonus", "ICT", "Fixture_Strength", "Result_Strength", "Predicted Points"]
+                    ,"Last GW points", "Percentage owned", "Team", "Total points", "Minutes Played", "Goals Scored", "Assists", "Clean sheets",
+                     "Goals Conceded", "Penalties Saved", "Penalties Missed", "Yellow Cards", "Saves", "Bonus", "ICT"]
 
-    data.to_csv("Players.csv")
+    data.to_csv("Players_New.csv")
     for i in array:
         print(i)
 

@@ -7,9 +7,9 @@ async def main():
         fpl = FPL(session)
         Results_array = []
         Fixtures_array = []
+        unconfirmed_fixrtures = [170,180,280,281,321,283,284,325,285,286,287]
         for i in range(1, 381):
-            if(i == 170 or i == 180 or
-            i == 321 or i == 325):
+            if(i in unconfirmed_fixrtures):
                 pass
             else:
                 fixture = await fpl.get_fixture(i)

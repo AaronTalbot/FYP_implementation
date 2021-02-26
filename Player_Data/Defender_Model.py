@@ -9,13 +9,13 @@ data = data[data["Chance of playing next round"].notna()]
 
 Defenders = data[data["Position"] == 2]
 
-Defenders = Defenders[["Total points", "Minutes Played", "Minutes Played", "Yellow Cards",
+Defenders = Defenders[["Total points", "Minutes Played", "Yellow Cards",
                                 "Clean sheets", "Goals Conceded", "Assists", "PPG"]]
 
 Total_Defenders = Defenders.shape[0]
 Train = round((Total_Defenders /10)*8)
 
-Test_Defenders = Defenders[["Total points", "Minutes Played", "Minutes Played", "Yellow Cards",
+Test_Defenders = Defenders[["Total points", "Minutes Played", "Yellow Cards",
                                 "Clean sheets", "Goals Conceded", "Assists"]]
 
 Test_Defenders_PPG = Defenders[["PPG"]]
