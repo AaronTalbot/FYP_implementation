@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            //TODO
+            OpenMainPage();
         }
 
 
@@ -66,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            OpenMainPage();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -76,6 +77,10 @@ public class LoginActivity extends AppCompatActivity {
                         // ...
                     }
                 });
+    }
+    public void OpenMainPage(){
+        Intent i = new Intent(this,OpeningPage.class);
+        startActivity(i);
     }
 
 }

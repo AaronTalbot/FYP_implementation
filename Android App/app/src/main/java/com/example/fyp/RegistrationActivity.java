@@ -1,5 +1,6 @@
 package com.example.fyp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -130,6 +131,8 @@ public class RegistrationActivity extends AppCompatActivity {
             newUserRef.child("Lname").setValue(u.getLname());
             newUserRef.child("Email").setValue(u.getEmail());
             newUserRef.child("UID").setValue(u.getUID());
+            OpenMainPage();
+
 
         }
         else{
@@ -151,5 +154,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    public void OpenMainPage(){
+        Intent i = new Intent(this,OpeningPage.class);
+        startActivity(i);
     }
 }

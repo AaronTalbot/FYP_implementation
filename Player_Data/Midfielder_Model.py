@@ -5,13 +5,13 @@ from sklearn import linear_model
 from sklearn.metrics import mean_absolute_error
 
 data = pd.read_csv("Players.csv")
-# data = data[data["Chance of playing next round"] != 0]
-data = data[data["Chance of playing next round"].notna()]
+# # data = data[data["Chance of playing next round"] != 0]
+# data = data[data["Chance of playing next round"].notna()]
 
 Midfielders = data[data["Position"] == 3]
 
-Midfielders = Midfielders[["PPG", "Total points", "Minutes Played", "Goals Scored", "Assists",
-                                      "Clean sheets", "Yellow Cards", "Bonus", "ICT","Fixture_Strength", "Result_Strength","GWPoints"]]
+Midfielders = Midfielders[["PPG", "Name","code","Chance of playing next round", "Team", "Total points", "Minutes Played", "Goals Scored", "Assists",
+                                      "Clean sheets", "Yellow Cards", "Bonus", "ICT","Fixture_Strength", "Result_Strength","GWPoints","Predicted Points"]]
 
 Total_Midfielders = Midfielders.shape[0]
 Train = round((Total_Midfielders / 10) * 8)
@@ -19,7 +19,7 @@ Train = round((Total_Midfielders / 10) * 8)
 # print(Train)
 
 Test_Midfielders = Midfielders[["Total points", "Minutes Played", "Goals Scored", "Assists",
-                                      "Clean sheets", "Yellow Cards", "Bonus", "ICT","Fixture_Strength", "Result_Strength"]]
+                                      "Clean sheets", "Yellow Cards", "Bonus", "ICT", "Result_Strength"]]
 
 Test_Midfielders_PPG = Midfielders[["GWPoints"]]
 
@@ -47,3 +47,15 @@ for train_index,test_index in kf.split(Train_Midfielders_Data.values):
     test_accuracies.append(mean_absolute_error(Test_Midfielders_Target.values, test_pred))
     count += 1
     print("-"*50)
+
+Future_Prediction = Midfielders[["Total points", "Minutes Played", "Goals Scored", "Assists",
+                                      "Clean sheets", "Yellow Cards", "Bonus", "ICT", "Fixture_Strength"]]
+
+index = accuracy.index(min(accuracy))
+
+predict = classifiers[index].predict(Future_Prediction.values)
+
+Midfielders["Predicted Points"] = predict.tolist()
+Out = Midfielders[["Name", "code", "Team", "Chance of playing next round", "Predicted Points"]]
+
+Out.to_csv("Midfeilders.csv")

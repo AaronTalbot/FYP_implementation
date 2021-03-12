@@ -5,22 +5,13 @@ from sklearn import linear_model
 from sklearn.metrics import explained_variance_score
 from sklearn.metrics import mean_absolute_error
 data = pd.read_csv("Players.csv")
-# data = data[data["Chance of playing next round"] != 0]
-# data = data[data["Chance of playing next round"].notna()]
 
 Attackers = data[data["Position"] == 4]
-
-Attackers = Attackers[["PPG","Name", "code", "Total points", "Team", "Chance of playing next round", "Minutes Played", "Goals Scored", "Assists", "Yellow Cards", "Bonus", "ICT","Fixture_Strength", "Result_Strength","GWPoints", "Predicted Points"]]
-
+Attackers = Attackers[["PPG", "Total points", "Minutes Played", "Goals Scored", "Assists", "Yellow Cards", "Bonus", "ICT","Fixture_Strength", "Result_Strength","GWPoints"]]
 Total_Attackers = Attackers.shape[0]
 Train = round((Total_Attackers / 10) * 8)
-# print(Train)
-# print(Total_Attackers)
-
 Test_Attackers = Attackers[["PPG","Total points", "Minutes Played", "Goals Scored", "Assists", "Yellow Cards", "Bonus", "ICT","Result_Strength"]]
-
 Test_Attackers_PPG = Attackers[["GWPoints"]]
-
 Train_Attackers_Data = Test_Attackers.head(Train)
 Train_Attackers_Target = Test_Attackers_PPG.head(Train)
 
@@ -55,14 +46,3 @@ Future_Prediction = Attackers[["PPG","Total points", "Minutes Played", "Goals Sc
 index = all_accuracies.index(min(all_accuracies))
 
 predict = classifiers[index].predict(Future_Prediction.values)
-
-# print(predict)
-
-# print(predict.shape)
-# print(Attackers.shape[0])
-Attackers['Predicted Points'] = predict.tolist()
-print(Attackers)
-
-Out = Attackers[["Name", "code", "Team", "Chance of playing next round", "Predicted Points"]]
-
-Out.to_csv("Attackers.csv")
