@@ -11,7 +11,7 @@ data = pd.read_csv("Players.csv")
 Defenders = data[data["Position"] == 2]
 
 Defenders = Defenders[["Total points", "code", "Name", "Minutes Played", "Yellow Cards",
-                                "Clean sheets", "Goals Conceded", "Assists", "PPG", "Fixture_Strength", "Chance of playing next round", "Result_Strength","GWPoints", "Predicted Points","Team"]]
+                                "Clean sheets", "Goals Conceded", "Assists", "PPG", "Fixture_Strength", "Chance of playing next round", "Result_Strength","GWPoints", "Predicted Points","Team", "Position","Live cost"]]
 
 Total_Defenders = Defenders.shape[0]
 Train = round((Total_Defenders /10)*8)
@@ -53,7 +53,9 @@ Future_Prediction = Defenders[["Total points", "Minutes Played", "Yellow Cards",
 index = accuracy.index(min(accuracy))
 predict = classifiers[index].predict(Future_Prediction.values)
 Defenders["Predicted Points"] = predict.tolist()
+Defenders["Live cost"] = Defenders["Live cost"]/10
 
-Out = Defenders[["Name", "code", "Team", "Chance of playing next round", "Predicted Points"]]
+
+Out = Defenders[["Name", "code", "Team", "Chance of playing next round", "Predicted Points","Live cost"]]
 
 Out.to_csv("Defenders.csv")

@@ -10,7 +10,7 @@ data = pd.read_csv("Players.csv")
 
 Attackers = data[data["Position"] == 4]
 
-Attackers = Attackers[["PPG","Name", "code", "Total points", "Team", "Chance of playing next round", "Minutes Played", "Goals Scored", "Assists", "Yellow Cards", "Bonus", "ICT","Fixture_Strength", "Result_Strength","GWPoints", "Predicted Points"]]
+Attackers = Attackers[["PPG","Name", "code", "Total points", "Team", "Chance of playing next round", "Minutes Played", "Goals Scored", "Assists", "Yellow Cards", "Bonus", "ICT","Fixture_Strength", "Result_Strength","GWPoints", "Predicted Points", "Position","Live cost"]]
 
 Total_Attackers = Attackers.shape[0]
 Train = round((Total_Attackers / 10) * 8)
@@ -62,7 +62,7 @@ predict = classifiers[index].predict(Future_Prediction.values)
 # print(Attackers.shape[0])
 Attackers['Predicted Points'] = predict.tolist()
 print(Attackers)
-
-Out = Attackers[["Name", "code", "Team", "Chance of playing next round", "Predicted Points"]]
+Attackers["Live cost"] = Attackers["Live cost"]/10
+Out = Attackers[["Name", "code", "Team", "Chance of playing next round", "Predicted Points","Live cost"]]
 
 Out.to_csv("Attackers.csv")

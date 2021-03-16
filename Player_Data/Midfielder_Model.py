@@ -11,7 +11,7 @@ data = pd.read_csv("Players.csv")
 Midfielders = data[data["Position"] == 3]
 
 Midfielders = Midfielders[["PPG", "Name","code","Chance of playing next round", "Team", "Total points", "Minutes Played", "Goals Scored", "Assists",
-                                      "Clean sheets", "Yellow Cards", "Bonus", "ICT","Fixture_Strength", "Result_Strength","GWPoints","Predicted Points"]]
+                                      "Clean sheets", "Yellow Cards", "Bonus", "ICT","Fixture_Strength", "Result_Strength","GWPoints","Predicted Points","Live cost"]]
 
 Total_Midfielders = Midfielders.shape[0]
 Train = round((Total_Midfielders / 10) * 8)
@@ -56,6 +56,7 @@ index = accuracy.index(min(accuracy))
 predict = classifiers[index].predict(Future_Prediction.values)
 
 Midfielders["Predicted Points"] = predict.tolist()
-Out = Midfielders[["Name", "code", "Team", "Chance of playing next round", "Predicted Points"]]
+Midfielders["Live cost"] = Midfielders["Live cost"]/10
+Out = Midfielders[["Name", "code", "Team", "Chance of playing next round", "Predicted Points","Live cost"]]
 
 Out.to_csv("Midfeilders.csv")
