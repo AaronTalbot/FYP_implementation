@@ -1,0 +1,18 @@
+Train Mean absolute error for split 0 :  1.6354453955200579
+Test  Mean absolute error for split 0 :  1.9006750490173774
+--------------------------------------------------
+Train Mean absolute error for split 1 :  2.7166378368051545
+Test  Mean absolute error for split 1 :  1.8623886747832388
+--------------------------------------------------
+Train Mean absolute error for split 2 :  2.6081535496067327
+Test  Mean absolute error for split 2 :  1.7859293065239812
+--------------------------------------------------
+Train Mean absolute error for split 3 :  1.794720111330002
+Test  Mean absolute error for split 3 :  1.801488523874591
+--------------------------------------------------
+Train Mean absolute error for split 4 :  1.1973718225479417
+Test  Mean absolute error for split 4 :  1.8076902856580785
+--------------------------------------------------
+Train Mean absolute error for split 5 :  1.217984406292155
+Test  Mean absolute error for split 5 :  1.8905661617012122
+--------------------------------------------------

@@ -7,7 +7,7 @@ async def main():
         fpl = FPL(session)
         Results_array = []
         Fixtures_array = []
-        unconfirmed_fixrtures = [170,180,280,281,321,283,284,325,285,286,287]
+        unconfirmed_fixrtures = [180,286]
         for i in range(1, 381):
             if(i in unconfirmed_fixrtures):
                 pass

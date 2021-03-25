@@ -14,7 +14,7 @@ Team_Count = [0,3,0,0,0,0,1,1,0,3,1,3,2,0,0,0,0,0,1,0]
 
 Team = []
 # itb = float(input("How much money do you have itb?:>>"))
-itb= 0.6
+itb= 1.5
 # for i in range(2):
 #     Player = []
 #     for index,team in enumerate(Teams):
@@ -97,7 +97,7 @@ itb= 0.6
 #     Team.append(Player)
 
 
-Team = [['Emiliano Martínez', 98980, 1, 5.3], ['Fabricio Agosto Ramírez', 40559, 1, 3.9], ['Tyrone Mings', 149484, 2, 5.4], ['Stuart Dallas', 87873, 2, 5.0], ['João Pedro Cavaco Cancelo', 121145, 2, 6.2], ['Luke Shaw', 106760, 2, 5.1], ['Rúben Santos Gato Alves Dias', 171314, 2, 6.1], ['Gylfi Sigurdsson', 55422, 3, 6.8], ['Mohamed Salah', 118748, 3, 12.5], ['Phil Foden', 209244, 3, 6.1], ['Bruno Miguel Borges Fernandes', 141746, 3, 11.5], ['Raphael Dias Belloli', 219961, 3, 5.4], ['Patrick Bamford', 106617, 4, 6.8], ['Michail Antonio', 57531, 4, 6.5], ['Ollie Watkins', 178301, 4, 6.6]]
+Team = [['Emiliano Martínez', 98980, 1, 5.3], ['Fabricio Agosto Ramírez', 40559, 1, 3.9], ['Tyrone Mings', 149484, 2, 5.4], ['Stuart Dallas', 87873, 2, 5.0], ['João Pedro Cavaco Cancelo', 121145, 2, 6.1], ['Luke Shaw', 106760, 2, 5.1], ['Rúben Santos Gato Alves Dias', 171314, 2, 6.1], ['James Ward-Prowse', 101178, 3, 5.9], ['Mohamed Salah', 118748, 3, 12.5], ['Phil Foden', 209244, 3, 6.1], ['Bruno Miguel Borges Fernandes', 141746, 3, 11.5], ['Raphael Dias Belloli', 219961, 3, 5.4], ['Patrick Bamford', 106617, 4, 6.8], ['Michail Antonio', 57531, 4, 6.5], ['Ollie Watkins', 178301, 4, 6.6]]
 
 Def = []
 Def_Dif = []
@@ -138,6 +138,7 @@ for player in Team:
                         Difference = Price - p
         Def.append(temp_row)
         Def_Dif.append(Difference)
+        Team_Count[Team_enum - 1] = Team_Count[Team_enum - 1] + 1
     #     =========================================================================================================================
     elif player[2] == 3:
         code = player[1]
@@ -169,6 +170,8 @@ for player in Team:
                         Difference = Price - p
         Mid.append(temp_row)
         Mid_Dif.append(Difference)
+        Team_Count[Team_enum - 1] = Team_Count[Team_enum - 1] + 1
+
 
     #     ==========================================================================================================================
     elif player[2] == 4:
@@ -201,6 +204,8 @@ for player in Team:
                         Difference = Price - p
         Att.append(temp_row)
         Att_Dif.append(Difference)
+        Team_Count[Team_enum - 1] = Team_Count[Team_enum - 1] + 1
+
 
 T_Def= []
 T_Mid = []

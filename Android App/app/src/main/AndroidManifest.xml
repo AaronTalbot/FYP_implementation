@@ -10,19 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FYP">
         <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
+        <activity
             android:name=".OpeningPage"
             android:label="@string/title_activity_opening_page"
             android:theme="@style/Theme.FYP.NoActionBar" />
-        <activity android:name=".RegistrationActivity">
-
-        </activity>
+        <activity android:name=".RegistrationActivity"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 
