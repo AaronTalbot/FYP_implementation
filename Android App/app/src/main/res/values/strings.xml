@@ -22,8 +22,10 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="I_the_bank">Please enter how much you have in the bank currently:</string>
 
     <string-array name="teams">
+        <item>Select Team</item>
         <item>Arsenal</item>
         <item>Aston Villa</item>
         <item>Brighton</item>
@@ -45,6 +47,8 @@
         <item>West Ham</item>
         <item>Wolves</item>
     </string-array>
+
+
     <string name="title_activity_settings">SettingsActivity</string>
 
     <!-- Preference Titles -->
@@ -61,4 +65,16 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="title_activity_opening_input">Opening_input</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_defenders">Defenders</string>
+    <string name="title_activity_goalkeeper">Goalkeeper</string>
+    <string name="enter">Enter</string>
 </resources>

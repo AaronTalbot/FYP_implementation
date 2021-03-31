@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 
 import com.example.fyp.Entity.GlobalVariable;
 import com.example.fyp.Entity.Player;
@@ -29,31 +30,24 @@ public class OpeningPage extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private static final String TAG = "Main Activity";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening_page);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-//        ArrayList<Player> Players = (ArrayList<Player>) getIntent().getSerializableExtra("Arraylist");
         final GlobalVariable Instance = GlobalVariable.getInstance();
         ArrayList<Player> Players = Instance.getPlayers();
 
+        FloatingActionButton fab = findViewById(R.id.fab);
 
 
-
-
-        if(Players.isEmpty()){
-            Log.d(TAG, "Players empty");
-        }
-        else{
-            Log.d(TAG, "Players not empty");
-        }
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -69,6 +63,9 @@ public class OpeningPage extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+
     }
 
     @Override

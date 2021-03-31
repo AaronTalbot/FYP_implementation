@@ -10,13 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FYP">
         <activity
+            android:name=".Team_input.Goalkeepers.Goalkeeper"
+            android:label="@string/title_activity_goalkeeper"
+            android:theme="@style/Theme.FYP.NoActionBar"></activity>
+        <activity
+            android:name=".Team_input.Defenders.Defenders"
+            android:label="@string/title_activity_defenders"
+            android:theme="@style/Theme.FYP.NoActionBar" />
+        <activity
+            android:name=".Team_input.Opening.Opening_input"
+            android:label="@string/title_activity_opening_input"
+            android:theme="@style/Theme.FYP.NoActionBar" />
+        <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
         <activity
             android:name=".OpeningPage"
             android:label="@string/title_activity_opening_page"
             android:theme="@style/Theme.FYP.NoActionBar" />
-        <activity android:name=".RegistrationActivity"></activity>
+        <activity android:name=".RegistrationActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

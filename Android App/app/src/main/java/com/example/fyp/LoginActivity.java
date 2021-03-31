@@ -39,7 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
 
-
+        final GlobalVariable Instance = GlobalVariable.getInstance();
+        ArrayList<Player> Players = Instance.getPlayers();
 
 
 

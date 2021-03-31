@@ -13,16 +13,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GlobalVariable implements Serializable {
-    private static final String TAG = "Global Variable Players";
+public class GatherPlayers implements Serializable {
+    private static final String TAG = "Gather Players";
 
     private static FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance("https://final-year-project-dd795-default-rtdb.europe-west1.firebasedatabase.app/");
 
-    private static GlobalVariable Instance = null;
+    private ArrayList<Player> Players = new ArrayList<Player>();
 
-    private static final ArrayList<Player> Players = new ArrayList<Player>();
-
-    public GlobalVariable() {
+    public GatherPlayers() {
         DatabaseReference playerRef = mFirebaseDatabase.getReference("Players");
         DatabaseReference goalKeeperRef = playerRef.child("Goalkeepers");
         DatabaseReference defenderRef = playerRef.child("Defenders");
@@ -83,17 +81,13 @@ public class GlobalVariable implements Serializable {
                 Log.d(TAG,error.toString());
             }
         });
-
     }
 
-    public static synchronized GlobalVariable getInstance() {
-        if(Instance == null){
-            Instance = new GlobalVariable();
-        }
-        return Instance;
+    public ArrayList<Player> getPlayers() {
+        return Players;
     }
 
-    private static synchronized void PopulatePlayers(DataSnapshot snapshot) {
+    private void PopulatePlayers(DataSnapshot snapshot) {
         for(DataSnapshot ds : snapshot.getChildren()){
 
             Player P = new Player();
@@ -116,9 +110,5 @@ public class GlobalVariable implements Serializable {
             Players.add(P);
             Log.d(TAG, P.getName());
         }
-    }
-
-    public static synchronized ArrayList<Player> getPlayers(){
-        return Players;
     }
 }

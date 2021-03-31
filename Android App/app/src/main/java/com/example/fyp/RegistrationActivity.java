@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fyp.Entity.GlobalVariable;
 import com.example.fyp.Entity.Player;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -48,6 +49,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
         mFirebaseDatabase = FirebaseDatabase.getInstance("https://final-year-project-dd795-default-rtdb.europe-west1.firebasedatabase.app/");
         UserRef = mFirebaseDatabase.getReference("Users");
+        final GlobalVariable Instance = GlobalVariable.getInstance();
+        ArrayList<Player> Players = Instance.getPlayers();
 
 
 

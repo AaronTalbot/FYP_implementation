@@ -26,14 +26,14 @@ public class GalleryFragment extends Fragment {
     private static String TAG = "GalleryFragment";
 
     // Primitive and string variables
-    private int GK_one_id = 0;
-    private int Spinner_id;
-
+//    private int GK_one_id = 0;
+//    private int Spinner_id;
+//
     private GalleryViewModel galleryViewModel;
-    private ArrayList<String> Teams = new ArrayList<String>();
-
-    // Android Components
-    private Spinner GoalKeeper_Name_one, GoalKeeper_Name_two, Goalkeeper_Team_one, Goalkeeper_Team_two;
+//    private ArrayList<String> Teams = new ArrayList<String>();
+//
+//    // Android Components
+//    private Spinner GoalKeeper_Name_one, GoalKeeper_Name_two, Goalkeeper_Team_one, Goalkeeper_Team_two;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,27 +49,27 @@ public class GalleryFragment extends Fragment {
 
 
 
-        Goalkeeper_Team_one = (Spinner) root.findViewById(R.id.goalkeeper_one_team);
-        GoalKeeper_Name_one = (Spinner) root.findViewById(R.id.goalkeeper_one);
+//        Goalkeeper_Team_one = (Spinner) root.findViewById(R.id.goalkeeper_one_team);
+//        GoalKeeper_Name_one = (Spinner) root.findViewById(R.id.goalkeeper_one);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.teams, android.R.layout.simple_spinner_item);
 
-        Goalkeeper_Team_one.setAdapter(adapter);
-
-        Goalkeeper_Team_one.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                GK_one_id = parent.getSelectedItemPosition();
-                String id2 = Integer.toString(GK_one_id);
-                Log.d(TAG, "position = " + id2);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Log.d(TAG, "position = not selected");
-            }
-        });
+//        Goalkeeper_Team_one.setAdapter(adapter);
+//
+//        Goalkeeper_Team_one.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                GK_one_id = parent.getSelectedItemPosition();
+//                String id2 = Integer.toString(GK_one_id);
+//                Log.d(TAG, "position = " + id2);
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                Log.d(TAG, "position = not selected");
+//            }
+//        });
 
 
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Teams);
@@ -78,42 +78,42 @@ public class GalleryFragment extends Fragment {
     }
 
 
-    private void showData(DataSnapshot dataSnapshot) {
-        int Team = GK_one_id + 1;
-
-
-        int count = 1;
-//        for(DataSnapshot ds : dataSnapshot.getChildren()){
-//             NGP = new GP();
-//            String Address = ds.child("Address").getValue(String.class);
-//            String Name  = ds.child("Name").getValue(String.class);
-//            Object Num = ds.child("Phone").getValue();
-//            String Email = ds.child("Email").getValue(String.class);
-//            Object Age = ds.child("Age").getValue();
-//            Object GPID = ds.child("GP_id").getValue();
+//    private void showData(DataSnapshot dataSnapshot) {
+//        int Team = GK_one_id + 1;
 //
 //
-//            NGP.setName(Name);
-//            NGP.setAddress(Address);
-//            NGP.setNum(Num.toString());
-//            NGP.setEmail(Email);
-//            NGP.setAge(Integer.parseInt(Age.toString()));
-//            NGP.setGP_id(GPID.toString());
-//            AR.add(NGP);
+//        int count = 1;
+////        for(DataSnapshot ds : dataSnapshot.getChildren()){
+////             NGP = new GP();
+////            String Address = ds.child("Address").getValue(String.class);
+////            String Name  = ds.child("Name").getValue(String.class);
+////            Object Num = ds.child("Phone").getValue();
+////            String Email = ds.child("Email").getValue(String.class);
+////            Object Age = ds.child("Age").getValue();
+////            Object GPID = ds.child("GP_id").getValue();
+////
+////
+////            NGP.setName(Name);
+////            NGP.setAddress(Address);
+////            NGP.setNum(Num.toString());
+////            NGP.setEmail(Email);
+////            NGP.setAge(Integer.parseInt(Age.toString()));
+////            NGP.setGP_id(GPID.toString());
+////            AR.add(NGP);
+////
+////
+////        }
+////        for(int i = 0; i < AR.size(); i++){
+////            SAR.add(AR.get(i).getName());
+////        }
+////        textView.setText(SAR.get(0));
 //
+////
+////
+////        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+////                android.R.layout.simple_spinner_item, SAR);
+////        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+////        S.setAdapter(adapter);
 //
-//        }
-//        for(int i = 0; i < AR.size(); i++){
-//            SAR.add(AR.get(i).getName());
-//        }
-//        textView.setText(SAR.get(0));
-
-//
-//
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_spinner_item, SAR);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        S.setAdapter(adapter);
-
-    }
+//    }
 }
