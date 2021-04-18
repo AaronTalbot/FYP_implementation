@@ -110,22 +110,3 @@ Total = pd.concat(l)
 Predict = []
 Actual = []
 
-for index,row in data.iterrows():
-    points = row["GWPoints"]
-    Name = row["code"]
-    predicted_points = Total.loc[Total['code'] == Name, 'Predicted Points'].values
-    if predicted_points.size >1:
-        print(predicted_points)
-        pp = predicted_points[0].replace("[", "")
-        pp = pp.replace("]", "")
-        pp = float(pp)
-        Actual.append(points)
-        Predict.append(pp)
-
-Accuracy = metrics.mean_absolute_error(Actual,Predict)
-
-Acc = open("Accuracy.txt","a")
-
-Acc.write(str(Accuracy))
-
-Acc.close()

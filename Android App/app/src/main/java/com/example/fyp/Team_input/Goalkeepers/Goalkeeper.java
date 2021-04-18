@@ -1,10 +1,12 @@
 package com.example.fyp.Team_input.Goalkeepers;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.fyp.Entity.GatherPlayers;
-import com.example.fyp.Entity.GlobalVariable;
+import com.example.fyp.Entity.ManagerTeam;
 import com.example.fyp.Entity.Player;
+import com.example.fyp.Team_input.Defenders.Defenders;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -15,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,11 +32,21 @@ public class Goalkeeper extends AppCompatActivity {
     private ArrayList<Player> Players, GoalKeepers;
     private ArrayList<Float> AR = new ArrayList<Float>();
 
+    ArrayList<Player> GK_Team_one = new ArrayList<Player>();
+    ArrayList<String> GK_Name_one_team = new ArrayList<String>();
+
+    ArrayList<Player> GK_Team_two = new ArrayList<Player>();
+    ArrayList<String> GK_Name_two_team = new ArrayList<String>();
+
 
     private Spinner gk_one_team,gk_one_name,gk_one_price;
     private Spinner gk_two_team,gk_two_name,gk_two_price;
+    private Button Confirm;
 
-    private GatherPlayers GV;
+
+    private GatherPlayers GP;
+    private ManagerTeam MT;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +57,16 @@ public class Goalkeeper extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            GV = (GatherPlayers) getIntent().getSerializableExtra("GP");
+            GP = (GatherPlayers) getIntent().getSerializableExtra("GP");
+            MT = (ManagerTeam) getIntent().getSerializableExtra("ManagerTeam");
             Log.d(TAG, "GATHER PLAYERS PASSED");
         }
 
-        Players = GV.getPlayers();
+        Players = GP.getPlayers();
         GoalKeepers = CreateGoalKeepers(Players);
         populateArrayList();
 
+        Confirm = findViewById(R.id.GoalKeeper_Enter_Button);
 
 
         gk_one_team = findViewById(R.id.GK_team_one);
@@ -73,6 +88,7 @@ public class Goalkeeper extends AppCompatActivity {
                 R.array.teams, android.R.layout.simple_spinner_item);
 
         gk_one_team.setAdapter(adapter);
+        gk_two_team.setAdapter(adapter);
 
         gk_one_team.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -86,7 +102,8 @@ public class Goalkeeper extends AppCompatActivity {
                     ((TextView)gk_one_team.getSelectedView()).setError("None Selected");;
                 }
                 else{
-                    PopulateSpinner(position, gk_one_name, 1);
+                    PopulateSpinner(position, gk_one_name, 0);
+
                 }
             }
             @Override
@@ -104,10 +121,9 @@ public class Goalkeeper extends AppCompatActivity {
                 if (position == 0) {
                     // Notify the selected item text
                     Toast.makeText(getApplicationContext(), "Please select a team", Toast.LENGTH_SHORT).show();
-                    ((TextView)gk_two_name.getSelectedView()).setError("None Selected");;
                 }
                 else{
-                    PopulateSpinner(position, gk_one_name, 2);
+                    PopulateSpinner(position, gk_two_name, 1);
                 }
             }
             @Override
@@ -125,6 +141,59 @@ public class Goalkeeper extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        final int[] GK_one_id = {0};
+
+        gk_one_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                GK_one_id[0] = parent.getSelectedItemPosition();
+                String id2 = Integer.toString(GK_one_id[0]);
+                Log.d(TAG, "position = " + id2);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.d(TAG, "position = not selected");
+            }
+        });
+
+        final int[] GK_two_id = {0};
+
+        gk_one_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                GK_two_id[0] = parent.getSelectedItemPosition();
+                String id2 = Integer.toString(GK_two_id[0]);
+                Log.d(TAG, "position = " + id2);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.d(TAG, "position = not selected");
+            }
+        });
+
+
+
+
+        Confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(GK_Team_one.isEmpty() & GK_Team_two.isEmpty()){
+                    Toast.makeText(Goalkeeper.this,"Please input goalkeepers",Toast.LENGTH_LONG).show();
+                }
+                MT.addPlayer(GK_Team_one.get(GK_one_id[0]), (float)gk_one_price.getSelectedItem(), 0);
+                MT.addPlayer(GK_Team_two.get(GK_two_id[0]),(float) gk_two_price.getSelectedItem(), 1);
+                OpenDefenders();
+            }
+        });
+
+    }
+
+    private void OpenDefenders() {
+        Intent i = new Intent(this , Defenders.class);
+        i.putExtra("ManagerTeam", MT);
+        i.putExtra("GP", GP);
+        startActivity(i);
+
     }
 
     private ArrayList<Player> CreateGoalKeepers(ArrayList<Player> players) {
@@ -139,18 +208,31 @@ public class Goalkeeper extends AppCompatActivity {
     }
 
     private void PopulateSpinner(int id, Spinner S, int playerNum){
-        ArrayList<Player> GK_Team = new ArrayList<Player>();
-        ArrayList<String> GK_Name_one_team = new ArrayList<String>();
-        for(int i =0; i<GoalKeepers.size(); i++){
-            if(GoalKeepers.get(i).getTeam() == id){
-                GK_Team.add(GoalKeepers.get(i));
-                GK_Name_one_team.add(GoalKeepers.get(i).getName());
+        if(playerNum == 0){
+            for(int i =0; i<GoalKeepers.size(); i++){
+                if(GoalKeepers.get(i).getTeam() == id){
+                    GK_Team_one.add(GoalKeepers.get(i));
+                    GK_Name_one_team.add(GoalKeepers.get(i).getName());
+                }
             }
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_spinner_item, GK_Name_one_team);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            S.setAdapter(adapter);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, GK_Name_one_team);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        S.setAdapter(adapter);
+        else if(playerNum == 1){
+            for(int i =0; i<GoalKeepers.size(); i++){
+                if(GoalKeepers.get(i).getTeam() == id){
+                    GK_Team_two.add(GoalKeepers.get(i));
+                    GK_Name_two_team.add(GoalKeepers.get(i).getName());
+                }
+            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_spinner_item, GK_Name_two_team);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            S.setAdapter(adapter);
+        }
+
 
     }
 

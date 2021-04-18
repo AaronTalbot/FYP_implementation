@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.example.fyp.Entity.GatherPlayers;
 import com.example.fyp.Entity.GlobalVariable;
+import com.example.fyp.Entity.ManagerTeam;
 import com.example.fyp.Team_input.Goalkeepers.Goalkeeper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -31,6 +32,7 @@ public class Opening_input extends AppCompatActivity {
     private Button Next;
 
     private GatherPlayers GP;
+    private ManagerTeam MT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class Opening_input extends AppCompatActivity {
         setContentView(R.layout.activity_opening_input);
         populateArrayList();
         GP = new GatherPlayers();
+        MT = new ManagerTeam();
         Bundle extras = getIntent().getExtras();
         itb = findViewById(R.id.spinner2);
         ArrayAdapter<Float> adapter = new ArrayAdapter<Float>(this, android.R.layout.simple_spinner_item, AR);
@@ -50,7 +53,7 @@ public class Opening_input extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "Change activity clicked");
-
+                MT.setItb((float)itb.getSelectedItem());
                 OpenDefendersActivity();
             }
         });
@@ -85,7 +88,7 @@ public class Opening_input extends AppCompatActivity {
         else{
             Intent i = new Intent(this , Goalkeeper.class);
             Float f = (Float) itb.getSelectedItem();
-            i.putExtra("IN THE BANK", f);
+            i.putExtra("ManagerTeam", MT);
             i.putExtra("GP", GP);
             startActivity(i);
         }

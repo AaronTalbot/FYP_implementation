@@ -77,4 +77,5 @@
     <string name="title_activity_defenders">Defenders</string>
     <string name="title_activity_goalkeeper">Goalkeeper</string>
     <string name="enter">Enter</string>
+    <string name="title_activity_midfeilders">Midfeilders</string>
 </resources>
