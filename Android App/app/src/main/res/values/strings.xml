@@ -78,4 +78,8 @@
     <string name="title_activity_goalkeeper">Goalkeeper</string>
     <string name="enter">Enter</string>
     <string name="title_activity_midfeilders">Midfeilders</string>
+    <string name="title_activity_attackers">Attackers</string>
+    <string name="title_activity_output">Output</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>

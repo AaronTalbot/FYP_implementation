@@ -10,7 +10,7 @@ Defenders = pd.read_csv("Defenders.csv")
 Midfielders = pd.read_csv("Midfeilders.csv")
 Attackers = pd.read_csv("Attackers.csv")
 
-Team_Count = [1,2,0,0,0,0,0,1,0,3,1,2,2,0,0,1,0,0,2,0]
+Team_Count = [1,3,0,0,0,0,0,1,0,3,1,2,2,0,0,1,0,0,1,0]
 
 Team = []
 # itb = float(input("How much money do you have itb?:>>"))
@@ -97,7 +97,7 @@ itb= 0.3
 #     Team.append(Player)
 
 
-Team = [['Emiliano Martínez', 98980, 1, 5.3], ['Fabricio Agosto Ramírez', 40559, 1, 3.9], ['Matt Targett', 169359, 2, 5.0], ['Stuart Dallas', 87873, 2, 5.0], ['Aaron Cresswell', 55459, 2, 5.9], ['Luke Shaw', 106760, 2, 5.2], ['Rúben Santos Gato Alves Dias', 171314, 2, 6.1], ['James Ward-Prowse', 101178, 3, 5.9], ['Mohamed Salah', 118748, 3, 12.5], ['Phil Foden', 209244, 3, 6.0], ['Bruno Miguel Borges Fernandes', 141746, 3, 11.6], ['Raphael Dias Belloli', 219961, 3, 5.5], ['Patrick Bamford', 106617, 4, 6.6], ['Michail Antonio', 57531, 4, 6.5], ['Alexandre Lacazette', 59966, 4, 8.2]]
+Team = [['Emiliano Martínez', 98980, 1, 5.3], ['Fabricio Agosto Ramírez', 40559, 1, 3.9], ['Matt Targett', 169359, 2, 5.0], ['Stuart Dallas', 87873, 2, 5.1], ['Aaron Cresswell', 55459, 2, 5.7], ['Luke Shaw', 106760, 2, 5.2], ['Rúben Santos Gato Alves Dias', 171314, 2, 6.1], ['James Ward-Prowse', 101178, 3, 5.9], ['Mohamed Salah', 118748, 3, 12.6], ['Phil Foden', 209244, 3, 6.0], ['Bruno Miguel Borges Fernandes', 141746, 3, 11.6], ['Raphael Dias Belloli', 219961, 3, 5.4], ['Patrick Bamford', 106617, 4, 6.5], ['Ollie Watkins', 178301, 4, 6.5], ['Alexandre Lacazette', 59966, 4, 8.3]]
 
 Def = []
 Def_Dif = []

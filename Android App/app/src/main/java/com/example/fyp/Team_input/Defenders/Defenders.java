@@ -1,5 +1,6 @@
 package com.example.fyp.Team_input.Defenders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.fyp.Entity.GatherPlayers;
@@ -53,6 +54,8 @@ public class Defenders extends AppCompatActivity {
 
 
 
+
+
     private Spinner def_one_team, def_one_name,def_one_price;
     private Spinner def_two_team,def_two_name,def_two_price;
     private Spinner def_three_team, def_three_name,def_three_price;
@@ -75,8 +78,12 @@ public class Defenders extends AppCompatActivity {
         if(extras != null){
             GP = (GatherPlayers) getIntent().getSerializableExtra("GP");
             MT = (ManagerTeam) getIntent().getSerializableExtra("ManagerTeam");
-            Log.d(TAG, "GATHER PLAYERS PASSED");
+            Log.d(TAG, "Gathered Player Data");
         }
+
+
+
+
 
         Players = GP.getPlayers();
         Defenders = createDefenders(Players);
@@ -114,6 +121,18 @@ public class Defenders extends AppCompatActivity {
         def_four_price.setAdapter(adapterFloat);
         def_five_price.setAdapter(adapterFloat);
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(Defenders.this,
+                R.array.teams, android.R.layout.simple_spinner_item);
+
+        def_one_team.setAdapter(adapter);
+        def_two_team.setAdapter(adapter);
+        def_three_team.setAdapter(adapter);
+        def_four_team.setAdapter(adapter);
+        def_five_team.setAdapter(adapter);
+
+
+
+
         def_one_team.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -149,7 +168,7 @@ public class Defenders extends AppCompatActivity {
                     ((TextView)def_one_team.getSelectedView()).setError("None Selected");;
                 }
                 else{
-                    PopulateSpinner(position, def_two_name, 0);
+                    PopulateSpinner(position, def_two_name, 1);
 
                 }
 
@@ -173,7 +192,7 @@ public class Defenders extends AppCompatActivity {
                     ((TextView)def_one_team.getSelectedView()).setError("None Selected");;
                 }
                 else{
-                    PopulateSpinner(position, def_three_name, 0);
+                    PopulateSpinner(position, def_three_name, 2);
 
                 }
 
@@ -197,7 +216,7 @@ public class Defenders extends AppCompatActivity {
                     ((TextView)def_one_team.getSelectedView()).setError("None Selected");;
                 }
                 else{
-                    PopulateSpinner(position, def_four_name, 0);
+                    PopulateSpinner(position, def_four_name, 3);
 
                 }
 
@@ -221,7 +240,7 @@ public class Defenders extends AppCompatActivity {
                     ((TextView)def_one_team.getSelectedView()).setError("None Selected");;
                 }
                 else{
-                    PopulateSpinner(position, def_five_name, 0);
+                    PopulateSpinner(position, def_five_name, 4);
 
                 }
 
@@ -232,6 +251,86 @@ public class Defenders extends AppCompatActivity {
 
             }
         });
+
+
+
+        final int[] DEF_one_id = {0};
+
+
+        def_one_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                DEF_one_id[0] = parent.getSelectedItemPosition();
+                String id2 = Integer.toString(DEF_one_id[0]);
+                Log.d(TAG, "position = " + id2);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.d(TAG, "position = not selected");
+            }
+        });
+
+        final int[] DEF_two_id = {0};
+
+
+        def_two_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                DEF_two_id[0] = parent.getSelectedItemPosition();
+                String id2 = Integer.toString(DEF_two_id[0]);
+                Log.d(TAG, "position = " + id2);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.d(TAG, "position = not selected");
+            }
+        });
+        final int[] DEF_three_id = {0};
+
+
+        def_three_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                DEF_three_id[0] = parent.getSelectedItemPosition();
+                String id2 = Integer.toString(DEF_three_id[0]);
+                Log.d(TAG, "position = " + id2);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.d(TAG, "position = not selected");
+            }
+        });
+        final int[] DEF_four_id = {0};
+
+
+        def_four_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                DEF_four_id[0] = parent.getSelectedItemPosition();
+                String id2 = Integer.toString(DEF_four_id[0]);
+                Log.d(TAG, "position = " + id2);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.d(TAG, "position = not selected");
+            }
+        });
+        final int[] DEF_five_id = {0};
+
+
+        def_five_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                DEF_five_id[0] = parent.getSelectedItemPosition();
+                String id2 = Integer.toString(DEF_five_id[0]);
+                Log.d(TAG, "position = " + id2);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Log.d(TAG, "position = not selected");
+            }
+        });
+
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -250,9 +349,18 @@ public class Defenders extends AppCompatActivity {
                 if(DEF_Team_one.isEmpty() || DEF_Team_two.isEmpty() || DEF_Team_three.isEmpty() || DEF_Team_four.isEmpty() || DEF_Team_five.isEmpty()){
                     Toast.makeText(Defenders.this,"Please input Defenders",Toast.LENGTH_LONG).show();
                 }
-                MT.addPlayer(GK_Team_one.get(GK_one_id[0]), (float)gk_one_price.getSelectedItem(), 0);
-                MT.addPlayer(GK_Team_two.get(GK_two_id[0]),(float) gk_two_price.getSelectedItem(), 1);
-                OpenDefenders();
+                MT.addPlayer(DEF_Team_one.get(def_one_name.getSelectedItemPosition()), (float)def_one_price.getSelectedItem(), 2);
+                Log.d(TAG, "INDEX 2");
+                Log.d(TAG, "Price = " + (float) def_two_price.getSelectedItem());
+                MT.addPlayer(DEF_Team_two.get(def_two_name.getSelectedItemPosition()), (float)def_two_price.getSelectedItem(), 3);
+                Log.d(TAG, "INDEX 3");
+                MT.addPlayer(DEF_Team_three.get(def_three_name.getSelectedItemPosition()), (float)def_three_price.getSelectedItem(), 4);
+                Log.d(TAG, "INDEX 4");
+                MT.addPlayer(DEF_Team_four.get(def_four_name.getSelectedItemPosition()), (float)def_four_price.getSelectedItem(), 5);
+                MT.addPlayer(DEF_Team_five.get(def_five_name.getSelectedItemPosition()), (float)def_five_price.getSelectedItem(), 6);
+
+
+                OpenMidfeilders();
             }
         });
     }
@@ -260,7 +368,7 @@ public class Defenders extends AppCompatActivity {
     private ArrayList<Player> createDefenders(ArrayList<Player> players) {
         ArrayList<Player> GK = new ArrayList<Player>();
         for(int i = 0; i <players.size();i++){
-            Log.d(TAG, "Adding Name = " + players.get(i).getName());
+//            Log.d(TAG, "Adding Name = " + players.get(i).getName());
             if(players.get(i).getPosition() == 2){
                 GK.add(players.get(i));
             }
@@ -270,6 +378,8 @@ public class Defenders extends AppCompatActivity {
 
     private void PopulateSpinner(int id, Spinner S, int playerNum){
         if(playerNum == 0){
+            DEF_Name_one_team.clear();
+            DEF_Team_one.clear();
             for(int i =0; i<Defenders.size(); i++){
                 if(Defenders.get(i).getTeam() == id){
                     DEF_Team_one.add(Defenders.get(i));
@@ -282,6 +392,8 @@ public class Defenders extends AppCompatActivity {
             S.setAdapter(adapter);
         }
         else if(playerNum == 1){
+            DEF_Name_two_team.clear();
+            DEF_Team_two.clear();
             for(int i =0; i<Defenders.size(); i++){
                 if(Defenders.get(i).getTeam() == id){
                     DEF_Team_two.add(Defenders.get(i));
@@ -294,6 +406,8 @@ public class Defenders extends AppCompatActivity {
             S.setAdapter(adapter);
         }
         else if(playerNum == 2){
+            DEF_Name_three_team.clear();
+            DEF_Team_three.clear();
             for(int i =0; i<Defenders.size(); i++){
                 if(Defenders.get(i).getTeam() == id){
                     DEF_Team_three.add(Defenders.get(i));
@@ -306,6 +420,8 @@ public class Defenders extends AppCompatActivity {
             S.setAdapter(adapter);
         }
         else if(playerNum == 3){
+            DEF_Name_four_team.clear();
+            DEF_Team_four.clear();
             for(int i =0; i<Defenders.size(); i++){
                 if(Defenders.get(i).getTeam() == id){
                     DEF_Team_four.add(Defenders.get(i));
@@ -318,6 +434,8 @@ public class Defenders extends AppCompatActivity {
             S.setAdapter(adapter);
         }
         else if(playerNum == 4){
+            DEF_Name_five_team.clear();
+            DEF_Team_five.clear();
             for(int i =0; i<Defenders.size(); i++){
                 if(Defenders.get(i).getTeam() == id){
                     DEF_Team_five.add(Defenders.get(i));
@@ -338,5 +456,13 @@ public class Defenders extends AppCompatActivity {
             float num = i/f;
             AR.add(num);
         }
+    }
+
+    private void OpenMidfeilders() {
+        Intent i = new Intent(this , Midfeilders.class);
+        i.putExtra("ManagerTeam", MT);
+        i.putExtra("GP", GP);
+        startActivity(i);
+
     }
 }

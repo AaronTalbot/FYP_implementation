@@ -10,9 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FYP">
         <activity
+            android:name=".Team_input.Output.Output"
+            android:label="@string/title_activity_output"
+            android:theme="@style/Theme.FYP.NoActionBar"></activity>
+        <activity
+            android:name=".Team_input.Attackers.Attackers"
+            android:label="@string/title_activity_attackers"
+            android:theme="@style/Theme.FYP.NoActionBar" />
+        <activity
             android:name=".Team_input.Midfeilders.Midfeilders"
             android:label="@string/title_activity_midfeilders"
-            android:theme="@style/Theme.FYP.NoActionBar"></activity>
+            android:theme="@style/Theme.FYP.NoActionBar" />
         <activity
             android:name=".Team_input.Goalkeepers.Goalkeeper"
             android:label="@string/title_activity_goalkeeper"

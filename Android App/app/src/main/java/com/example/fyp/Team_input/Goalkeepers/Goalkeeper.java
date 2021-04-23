@@ -141,13 +141,11 @@ public class Goalkeeper extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        final int[] GK_one_id = {0};
 
         gk_one_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                GK_one_id[0] = parent.getSelectedItemPosition();
-                String id2 = Integer.toString(GK_one_id[0]);
+                String id2 = Integer.toString(gk_one_name.getSelectedItemPosition());
                 Log.d(TAG, "position = " + id2);
             }
             @Override
@@ -156,13 +154,11 @@ public class Goalkeeper extends AppCompatActivity {
             }
         });
 
-        final int[] GK_two_id = {0};
 
-        gk_one_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        gk_two_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                GK_two_id[0] = parent.getSelectedItemPosition();
-                String id2 = Integer.toString(GK_two_id[0]);
+                String id2 = Integer.toString(gk_two_name.getSelectedItemPosition());
                 Log.d(TAG, "position = " + id2);
             }
             @Override
@@ -180,8 +176,8 @@ public class Goalkeeper extends AppCompatActivity {
                 if(GK_Team_one.isEmpty() & GK_Team_two.isEmpty()){
                     Toast.makeText(Goalkeeper.this,"Please input goalkeepers",Toast.LENGTH_LONG).show();
                 }
-                MT.addPlayer(GK_Team_one.get(GK_one_id[0]), (float)gk_one_price.getSelectedItem(), 0);
-                MT.addPlayer(GK_Team_two.get(GK_two_id[0]),(float) gk_two_price.getSelectedItem(), 1);
+                MT.addPlayer(GK_Team_one.get(gk_one_name.getSelectedItemPosition()), (float)gk_one_price.getSelectedItem(), 0);
+                MT.addPlayer(GK_Team_two.get(gk_two_name.getSelectedItemPosition()),(float) gk_two_price.getSelectedItem(), 1);
                 OpenDefenders();
             }
         });
@@ -199,7 +195,7 @@ public class Goalkeeper extends AppCompatActivity {
     private ArrayList<Player> CreateGoalKeepers(ArrayList<Player> players) {
         ArrayList<Player> GK = new ArrayList<Player>();
         for(int i = 0; i <players.size();i++){
-            Log.d(TAG, "Adding Name = " + players.get(i).getName());
+//            Log.d(TAG, "Adding Name = " + players.get(i).getName());
             if(players.get(i).getPosition() == 1){
                 GK.add(players.get(i));
             }
@@ -209,6 +205,8 @@ public class Goalkeeper extends AppCompatActivity {
 
     private void PopulateSpinner(int id, Spinner S, int playerNum){
         if(playerNum == 0){
+            GK_Team_one.clear();
+            GK_Name_one_team.clear();
             for(int i =0; i<GoalKeepers.size(); i++){
                 if(GoalKeepers.get(i).getTeam() == id){
                     GK_Team_one.add(GoalKeepers.get(i));
