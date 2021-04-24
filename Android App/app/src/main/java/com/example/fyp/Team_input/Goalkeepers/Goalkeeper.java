@@ -176,8 +176,8 @@ public class Goalkeeper extends AppCompatActivity {
                 if(GK_Team_one.isEmpty() & GK_Team_two.isEmpty()){
                     Toast.makeText(Goalkeeper.this,"Please input goalkeepers",Toast.LENGTH_LONG).show();
                 }
-                MT.addPlayer(GK_Team_one.get(gk_one_name.getSelectedItemPosition()), (float)gk_one_price.getSelectedItem(), 0);
-                MT.addPlayer(GK_Team_two.get(gk_two_name.getSelectedItemPosition()),(float) gk_two_price.getSelectedItem(), 1);
+                MT.addPlayer(GK_Team_one.get(gk_one_name.getSelectedItemPosition()-1), (float)gk_one_price.getSelectedItem(), 0);
+                MT.addPlayer(GK_Team_two.get(gk_two_name.getSelectedItemPosition()-1),(float) gk_two_price.getSelectedItem(), 1);
                 OpenDefenders();
             }
         });
@@ -207,6 +207,7 @@ public class Goalkeeper extends AppCompatActivity {
         if(playerNum == 0){
             GK_Team_one.clear();
             GK_Name_one_team.clear();
+            GK_Name_one_team.add("Goalkeeper 1");
             for(int i =0; i<GoalKeepers.size(); i++){
                 if(GoalKeepers.get(i).getTeam() == id){
                     GK_Team_one.add(GoalKeepers.get(i));
@@ -219,6 +220,9 @@ public class Goalkeeper extends AppCompatActivity {
             S.setAdapter(adapter);
         }
         else if(playerNum == 1){
+            GK_Team_two.clear();
+            GK_Name_two_team.clear();
+            GK_Name_two_team.add("Goalkeeper 2");
             for(int i =0; i<GoalKeepers.size(); i++){
                 if(GoalKeepers.get(i).getTeam() == id){
                     GK_Team_two.add(GoalKeepers.get(i));

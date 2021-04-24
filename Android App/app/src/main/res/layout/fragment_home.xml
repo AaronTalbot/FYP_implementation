@@ -7,16 +7,87 @@
     tools:context=".ui.home.HomeFragment">
 
     <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:id="@+id/textView13"
+        android:layout_width="403dp"
+        android:layout_height="37dp"
+        android:text="Rudiger (CHE) (6.3%) has conceded 2 in 7 starts"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="403dp"
+        android:layout_height="37dp"
+        android:text="Che Adams (SOU) (4.3%) Decent run of fixtures from 35-37"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="406dp"
+        android:layout_height="65dp"
+        android:text="Hello and welcome to the FPL help application. Here you can find tips and tricks to help you with FPL for the course of the season. "
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.072" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="394dp"
+        android:layout_height="91dp"
+        android:text="Our Main Feature is the transfer predictor, which helps you choose which transfer to make in between game weeks to optimise points. You can find this functrionality in the Input Team page."
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintVertical_bias="0.10" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="152dp"
+        android:layout_height="38dp"
+        android:text="Differentials:"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.428" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="403dp"
+        android:layout_height="37dp"
+        android:text="Mesiler (LEE) (6.9%) Has out performed his age."
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

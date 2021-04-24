@@ -4,4 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.gallery.GalleryFragment"/>
+    tools:context=".ui.gallery.GalleryFragment">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="385dp"
+        android:layout_height="210dp"
+        android:text="Mohamed Salah (£12.6m) was the most-captained player in Fantasy Premier League for the 10th time this season but a goal may not have been enough to satisfy his backers. The Egyptian made the perfect start, scoring after just three minutes, but the 1.3million FPL managers who handed him the armband may well feel their captain missed out on a much bigger haul. Salah missed two big chances while also laying on a big chance for Sadio Mane (£11.7m), which also went begging. So far in 2020/21, a total of 35million Fantasy managers have handed Salah the armband. No player has been a more popular choice."
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.013" />
+</androidx.constraintlayout.widget.ConstraintLayout>

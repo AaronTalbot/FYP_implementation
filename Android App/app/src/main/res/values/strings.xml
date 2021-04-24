@@ -1,16 +1,17 @@
 <resources>
-    <string name="app_name">FYP</string>
+    <string name="app_name">FPL Knowledge</string>
     <string name="title_activity_opening_page">OpeningPage</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Fantasy Premier League Info</string>
+    <string name="nav_header_subtitle">Helping The Average User</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_gallery">Team News</string>
+    <string name="menu_slideshow">Input Team</string>
+    <string name="menu_settings">Settings</string>
     <string name="title_activity_login2">LoginActivity2</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -82,4 +83,9 @@
     <string name="title_activity_output">Output</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="attacker_recoomendation">Attacker Recoomendation:</string>
+    <string name="midfeilder_recoomendation">Midfeilder Recoomendation:</string>
+    <string name="defender_reccomendation">Defender Reccomendation:</string>
 </resources>
