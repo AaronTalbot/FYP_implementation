@@ -1,5 +1,7 @@
 package com.example.fyp.Team_input.Attackers;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -7,6 +9,7 @@ import com.example.fyp.Entity.GatherPlayers;
 import com.example.fyp.Entity.ManagerTeam;
 import com.example.fyp.Entity.Player;
 import com.example.fyp.Team_input.Attackers.Attackers;
+import com.example.fyp.Team_input.Defenders.Defenders;
 import com.example.fyp.Team_input.Midfeilders.Midfeilders;
 import com.example.fyp.Team_input.Output.Output;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -223,14 +226,7 @@ public class Attackers extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         Confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -238,10 +234,30 @@ public class Attackers extends AppCompatActivity {
                 if(ATT_Team_one.isEmpty() || ATT_Team_two.isEmpty() || ATT_Team_three.isEmpty()){
                     Toast.makeText(Attackers.this,"Please input Attackers",Toast.LENGTH_LONG).show();
                 }
-                MT.addPlayer(ATT_Team_one.get(ATT_one_id[0]), (float)ATT_one_price.getSelectedItem(), 12);
-                MT.addPlayer(ATT_Team_two.get(ATT_two_id[0]), (float)ATT_two_price.getSelectedItem(), 13);
-                MT.addPlayer(ATT_Team_three.get(ATT_three_id[0]), (float)ATT_three_price.getSelectedItem(), 14);
-                OpenOutput();
+                else{
+                    new AlertDialog.Builder(Attackers.this)
+                            .setTitle("Goalkeepers Confirmation")
+                            .setMessage("Are you sure this data is correct?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    MT.addPlayer(ATT_Team_one.get(ATT_one_id[0]), (float)ATT_one_price.getSelectedItem(), 12);
+                                    MT.addPlayer(ATT_Team_two.get(ATT_two_id[0]), (float)ATT_two_price.getSelectedItem(), 13);
+                                    MT.addPlayer(ATT_Team_three.get(ATT_three_id[0]), (float)ATT_three_price.getSelectedItem(), 14);
+                                    OpenOutput();
+                                }
+                            })
+                            .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which){
+                                    dialog.dismiss();
+                                }
+                            }).show();
+
+
+
+                }
+
 
 
 

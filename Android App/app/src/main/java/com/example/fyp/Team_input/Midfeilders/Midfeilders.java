@@ -1,5 +1,7 @@
 package com.example.fyp.Team_input.Midfeilders;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -7,7 +9,6 @@ import com.example.fyp.Entity.GatherPlayers;
 import com.example.fyp.Entity.ManagerTeam;
 import com.example.fyp.Entity.Player;
 import com.example.fyp.Team_input.Attackers.Attackers;
-import com.example.fyp.Team_input.Defenders.Defenders;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -328,14 +329,7 @@ public class Midfeilders extends AppCompatActivity {
         });
 
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         Confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -343,14 +337,34 @@ public class Midfeilders extends AppCompatActivity {
                 if(MID_Team_one.isEmpty() || MID_Team_two.isEmpty() || MID_Team_three.isEmpty() || MID_Team_four.isEmpty() || MID_Team_five.isEmpty()){
                     Toast.makeText(Midfeilders.this,"Please input MIDenders",Toast.LENGTH_LONG).show();
                 }
-                MT.addPlayer(MID_Team_one.get(MID_one_id[0]), (float)MID_one_price.getSelectedItem(), 7);
-                MT.addPlayer(MID_Team_two.get(MID_two_id[0]), (float)MID_two_price.getSelectedItem(), 8);
-                MT.addPlayer(MID_Team_three.get(MID_three_id[0]), (float)MID_three_price.getSelectedItem(), 9);
-                MT.addPlayer(MID_Team_four.get(MID_four_id[0]), (float)MID_four_price.getSelectedItem(), 10);
-                MT.addPlayer(MID_Team_five.get(MID_five_id[0]), (float)MID_five_price.getSelectedItem(), 11);
+                else{
+                    new AlertDialog.Builder(Midfeilders.this)
+                            .setTitle("Midfielders Confirmation")
+                            .setMessage("Are you sure this data is correct?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    MT.addPlayer(MID_Team_one.get(MID_one_id[0]), (float)MID_one_price.getSelectedItem(), 7);
+                                    MT.addPlayer(MID_Team_two.get(MID_two_id[0]), (float)MID_two_price.getSelectedItem(), 8);
+                                    MT.addPlayer(MID_Team_three.get(MID_three_id[0]), (float)MID_three_price.getSelectedItem(), 9);
+                                    MT.addPlayer(MID_Team_four.get(MID_four_id[0]), (float)MID_four_price.getSelectedItem(), 10);
+                                    MT.addPlayer(MID_Team_five.get(MID_five_id[0]), (float)MID_five_price.getSelectedItem(), 11);
 
 
-                OpenAttackers();
+                                    OpenAttackers();
+                                }
+                            })
+                            .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which){
+                                    dialog.dismiss();
+                                }
+                            }).show();
+
+
+
+                }
+
             }
         });
     }

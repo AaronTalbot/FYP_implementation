@@ -88,4 +88,8 @@
     <string name="attacker_recoomendation">Attacker Recoomendation:</string>
     <string name="midfeilder_recoomendation">Midfeilder Recoomendation:</string>
     <string name="defender_reccomendation">Defender Reccomendation:</string>
+    <string name="welcome_to_the_team_input_page_here_you_will_need_your_team_ready_with_the_players_sell_now_price_the_screen_is_shown_below_as_an_example">Welcome to the team input page. Here you will need your team ready with the players sell now price. The screen is shown below as an example.</string>
+    <string name="input_team">Input Team</string>
+    <string name="fpl_transfers_page">FPL transfers page</string>
+    <string name="title_activity_about_us">AboutUs</string>
 </resources>

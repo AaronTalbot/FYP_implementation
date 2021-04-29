@@ -1,5 +1,7 @@
 package com.example.fyp.Team_input.Defenders;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -332,35 +334,41 @@ public class Defenders extends AppCompatActivity {
         });
 
 
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         Confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(DEF_Team_one.isEmpty() || DEF_Team_two.isEmpty() || DEF_Team_three.isEmpty() || DEF_Team_four.isEmpty() || DEF_Team_five.isEmpty()){
                     Toast.makeText(Defenders.this,"Please input Defenders",Toast.LENGTH_LONG).show();
                 }
-                MT.addPlayer(DEF_Team_one.get(def_one_name.getSelectedItemPosition()), (float)def_one_price.getSelectedItem(), 2);
-                Log.d(TAG, "INDEX 2");
-                Log.d(TAG, "Price = " + (float) def_two_price.getSelectedItem());
-                MT.addPlayer(DEF_Team_two.get(def_two_name.getSelectedItemPosition()), (float)def_two_price.getSelectedItem(), 3);
-                Log.d(TAG, "INDEX 3");
-                MT.addPlayer(DEF_Team_three.get(def_three_name.getSelectedItemPosition()), (float)def_three_price.getSelectedItem(), 4);
-                Log.d(TAG, "INDEX 4");
-                MT.addPlayer(DEF_Team_four.get(def_four_name.getSelectedItemPosition()), (float)def_four_price.getSelectedItem(), 5);
-                MT.addPlayer(DEF_Team_five.get(def_five_name.getSelectedItemPosition()), (float)def_five_price.getSelectedItem(), 6);
+                else{
+                    new AlertDialog.Builder(Defenders.this)
+                            .setTitle("Goalkeepers Confirmation")
+                            .setMessage("Are you sure this data is correct?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    MT.addPlayer(DEF_Team_one.get(def_one_name.getSelectedItemPosition()), (float) def_one_price.getSelectedItem(), 2);
+                                    Log.d(TAG, "INDEX 2");
+                                    Log.d(TAG, "Price = " + (float) def_two_price.getSelectedItem());
+                                    MT.addPlayer(DEF_Team_two.get(def_two_name.getSelectedItemPosition()), (float) def_two_price.getSelectedItem(), 3);
+                                    Log.d(TAG, "INDEX 3");
+                                    MT.addPlayer(DEF_Team_three.get(def_three_name.getSelectedItemPosition()), (float) def_three_price.getSelectedItem(), 4);
+                                    Log.d(TAG, "INDEX 4");
+                                    MT.addPlayer(DEF_Team_four.get(def_four_name.getSelectedItemPosition()), (float) def_four_price.getSelectedItem(), 5);
+                                    MT.addPlayer(DEF_Team_five.get(def_five_name.getSelectedItemPosition()), (float) def_five_price.getSelectedItem(), 6);
+                                    OpenMidfeilders();
+                                }
+                            })
+                            .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which){
+                                    dialog.dismiss();
+                                }
+                            }).show();
 
 
-                OpenMidfeilders();
+                }
+
             }
         });
     }

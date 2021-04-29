@@ -6,14 +6,18 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
-import android.widget.Button;
 
+import com.example.fyp.Entity.GatherPlayers;
 import com.example.fyp.Entity.GlobalVariable;
+import com.example.fyp.Entity.ManagerTeam;
 import com.example.fyp.Entity.Player;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -29,7 +33,8 @@ public class OpeningPage extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private static final String TAG = "Main Activity";
-
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,27 @@ public class OpeningPage extends AppCompatActivity {
         final GlobalVariable Instance = GlobalVariable.getInstance();
         ArrayList<Player> Players = Instance.getPlayers();
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.ReturnFAB);
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        String id = user.getUid();
+
+        Log.d(TAG,"UID = " +  id);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            User u = (User) getIntent().getSerializableExtra("User");
+            u.setUID(id);
+            FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance("https://final-year-project-dd795-default-rtdb.europe-west1.firebasedatabase.app/");
+            DatabaseReference UserRef = mFirebaseDatabase.getReference("Users");
+            DatabaseReference newUserRef = UserRef.push();
+
+            newUserRef.child("Fname").setValue(u.getFname());
+            newUserRef.child("Lname").setValue(u.getLname());
+            newUserRef.child("Email").setValue(u.getEmail());
+            newUserRef.child("UID").setValue(u.getUID());
+        }
 
 
 

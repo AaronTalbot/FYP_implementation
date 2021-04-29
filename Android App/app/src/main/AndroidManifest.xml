@@ -7,14 +7,18 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:screenOrientation="portrait"
+        android:supportsRtl="true"
         android:theme="@style/Theme.FYP">
+        <activity
+            android:name=".AboutUs"
+            android:label="@string/title_activity_about_us"
+            android:theme="@style/Theme.FYP.NoActionBar"></activity>
         <activity
             android:name=".Team_input.Output.Output"
             android:label="@string/title_activity_output"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.FYP.NoActionBar"></activity>
+            android:theme="@style/Theme.FYP.NoActionBar" />
         <activity
             android:name=".Team_input.Attackers.Attackers"
             android:label="@string/title_activity_attackers"
@@ -22,32 +26,32 @@
             android:theme="@style/Theme.FYP.NoActionBar" />
         <activity
             android:name=".Team_input.Midfeilders.Midfeilders"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_midfeilders"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.FYP.NoActionBar" />
         <activity
             android:name=".Team_input.Goalkeepers.Goalkeeper"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_goalkeeper"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.FYP.NoActionBar" />
         <activity
             android:name=".Team_input.Defenders.Defenders"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_defenders"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.FYP.NoActionBar" />
         <activity
             android:name=".Team_input.Opening.Opening_input"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_opening_input"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.FYP.NoActionBar" />
         <activity
             android:name=".SettingsActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_settings" />
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".OpeningPage"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_opening_page"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.FYP.NoActionBar" />
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".LoginActivity">

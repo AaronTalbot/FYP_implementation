@@ -1,5 +1,7 @@
 package com.example.fyp.Team_input.Goalkeepers;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -132,15 +134,7 @@ public class Goalkeeper extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         gk_one_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -176,9 +170,33 @@ public class Goalkeeper extends AppCompatActivity {
                 if(GK_Team_one.isEmpty() & GK_Team_two.isEmpty()){
                     Toast.makeText(Goalkeeper.this,"Please input goalkeepers",Toast.LENGTH_LONG).show();
                 }
-                MT.addPlayer(GK_Team_one.get(gk_one_name.getSelectedItemPosition()-1), (float)gk_one_price.getSelectedItem(), 0);
-                MT.addPlayer(GK_Team_two.get(gk_two_name.getSelectedItemPosition()-1),(float) gk_two_price.getSelectedItem(), 1);
-                OpenDefenders();
+                else if(gk_one_name.getSelectedItemPosition() == 0){
+                    Toast.makeText(Goalkeeper.this,"Please input goalkeeper 1",Toast.LENGTH_LONG).show();
+                }
+                else if(gk_two_name.getSelectedItemPosition() == 0){
+                    Toast.makeText(Goalkeeper.this,"Please input goalkeeper 2",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    new AlertDialog.Builder(Goalkeeper.this)
+                            .setTitle("Goalkeepers Confirmation")
+                            .setMessage("Are you sure this data is correct?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    MT.addPlayer(GK_Team_one.get(gk_one_name.getSelectedItemPosition()-1), (float)gk_one_price.getSelectedItem(), 0);
+                                    MT.addPlayer(GK_Team_two.get(gk_two_name.getSelectedItemPosition()-1),(float) gk_two_price.getSelectedItem(), 1);
+                                    OpenDefenders();
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which){
+                                    dialog.dismiss();
+                                }
+                            }).show();
+
+                }
+
             }
         });
 

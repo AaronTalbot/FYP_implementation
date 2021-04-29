@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.fyp.Entity.GatherPlayers;
-import com.example.fyp.Entity.GlobalVariable;
 import com.example.fyp.Entity.ManagerTeam;
 import com.example.fyp.Team_input.Goalkeepers.Goalkeeper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -58,7 +57,7 @@ public class Opening_input extends AppCompatActivity {
             }
         });
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.ReturnFAB);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

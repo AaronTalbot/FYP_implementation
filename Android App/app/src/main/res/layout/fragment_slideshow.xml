@@ -10,9 +10,40 @@
         android:id="@+id/Input_Team_slideshow_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Input Team"
+        android:text="@string/input_team"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.867"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.824" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_to_the_team_input_page_here_you_will_need_your_team_ready_with_the_players_sell_now_price_the_screen_is_shown_below_as_an_example"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.089" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="366dp"
+        android:layout_height="358dp"
+        android:contentDescription="@string/fpl_transfers_page"
+        android:src="@drawable/screenshot_2021_04_26_124701"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.461"
+        app:srcCompat="@drawable/fpl_transfers"
+        tools:srcCompat="@drawable/screenshot_2021_04_26_124701" />
 </androidx.constraintlayout.widget.ConstraintLayout>

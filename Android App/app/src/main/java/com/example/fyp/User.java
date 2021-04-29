@@ -1,6 +1,8 @@
 package com.example.fyp;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String Fname;
     private String Lname;
     private String Email;

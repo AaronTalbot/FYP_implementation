@@ -36,21 +36,23 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText Email1,Email2,Password1,Password2, Fname,Lname;
     private Button Register;
 
+    private User u;
 
     private boolean PasswordBool;
     private boolean EmailSame, Namebool;
-
+    private boolean PassData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
 
         mFirebaseDatabase = FirebaseDatabase.getInstance("https://final-year-project-dd795-default-rtdb.europe-west1.firebasedatabase.app/");
         UserRef = mFirebaseDatabase.getReference("Users");
         final GlobalVariable Instance = GlobalVariable.getInstance();
         ArrayList<Player> Players = Instance.getPlayers();
+
+        u = new User();
 
 
 
@@ -114,6 +116,8 @@ public class RegistrationActivity extends AppCompatActivity {
                                 Log.d(TAG, "createUserWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(RegistrationActivity.this,"Authentication Success.",Toast.LENGTH_SHORT).show();
+                                UpdateUI(user);
+
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -124,45 +128,49 @@ public class RegistrationActivity extends AppCompatActivity {
                             // ...
                         }
                     });
-            User u = new User();
-            u.setEmail(Email);
-            u.setFname(Fname.getText().toString());
-            u.setLname(Lname.getText().toString());
-            u.setUID(user.getUid());
-
-            DatabaseReference newUserRef = UserRef.push();
-
-            newUserRef.child("Fname").setValue(u.getFname());
-            newUserRef.child("Lname").setValue(u.getLname());
-            newUserRef.child("Email").setValue(u.getEmail());
-            newUserRef.child("UID").setValue(u.getUID());
-            OpenMainPage();
-
 
         }
         else{
             if(!Namebool){
                 Fname.setError("Name cannot be empty");
                 Lname.setError("Name cannot be empty");
-                Toast.makeText(RegistrationActivity.this,"Details incorrect",Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistrationActivity.this,"Names need to be inputted",Toast.LENGTH_SHORT).show();
             }
             else
                 if(!PasswordBool){
                     Password2.setError("Passwords must match");
-                    Toast.makeText(RegistrationActivity.this,"Details incorrect",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrationActivity.this,"Passwords must match",Toast.LENGTH_SHORT).show();
                 }
             else
                 if(!EmailSame){
                     Email2.setError("Emails must match");
-                    Toast.makeText(RegistrationActivity.this,"Details incorrect",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrationActivity.this,"Emails must match",Toast.LENGTH_SHORT).show();
                 }
 
         }
 
     }
 
+    private void UpdateUI(FirebaseUser us) {
+        u.setEmail(String.valueOf(Email1.getText()));
+        u.setFname(Fname.getText().toString());
+        u.setLname(Lname.getText().toString());
+        u.setUID(us.getUid());
+
+        DatabaseReference newUserRef = UserRef.push();
+
+        newUserRef.child("Fname").setValue(u.getFname());
+        newUserRef.child("Lname").setValue(u.getLname());
+        newUserRef.child("Email").setValue(u.getEmail());
+        newUserRef.child("UID").setValue(u.getUID());
+        OpenMainPage();
+
+
+    }
+
     public void OpenMainPage(){
         Intent i = new Intent(this,OpeningPage.class);
         startActivity(i);
+
     }
 }
