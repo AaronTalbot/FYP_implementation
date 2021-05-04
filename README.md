@@ -2,9 +2,14 @@
 
 This repository is all the work done solely by myself during my final year project. 
 
-This Repository has 2 sections Player Data which stores info about Fantasy Premier League Data including Fixtures, Results and player Data. 
+This Repository has 2 sections Player Data which stores info about Fantasy Premier League Data including Fixtures, Results and player Data.
+All data was gathered using the FPL framework for python. These docs can be found in the repository. 
 
 Android Application then also stores the android application that recommends Transfers to users. 
+
+The research paper will be availble once it is completed. 
+
+
 
 ## Usage
 We hope to have the android application in the google play store by the start of the next season. 
