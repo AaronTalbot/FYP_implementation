@@ -157,12 +157,25 @@ public class RegistrationActivity extends AppCompatActivity {
         u.setLname(Lname.getText().toString());
         u.setUID(us.getUid());
 
+
+        us.sendEmailVerification()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Email sent.");
+                            Toast.makeText(RegistrationActivity.this, "Please verify email.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
         DatabaseReference newUserRef = UserRef.push();
 
         newUserRef.child("Fname").setValue(u.getFname());
         newUserRef.child("Lname").setValue(u.getLname());
         newUserRef.child("Email").setValue(u.getEmail());
         newUserRef.child("UID").setValue(u.getUID());
+        newUserRef.child("Verified").setValue("False");
         OpenMainPage();
 
 

@@ -69,19 +69,31 @@ public class ManagerTeam implements Serializable {
             if(Manager_Team.get(i).getPosition() == 2){
                 for(int j = 0; j < Defenders.size();j++){
 
-                    if(budget >= Defenders.get(j).getCost() & !Players.contains(Defenders.get(j))){
+                    if(budget >= Defenders.get(j).getCost() & !Manager_Team.contains(Defenders.get(j))){
                         if(Defenders.get(j).getPredicted_points() - Manager_Team.get(i).getPredicted_points() > Differential){
                             different.clear();
                             Differential = Defenders.get(j).getPredicted_points() - Manager_Team.get(i).getPredicted_points();
                             different.add(Defenders.get(j));
                             different.add(Manager_Team.get(i));
+                            Log.d(TAG, "We are have found a defender");
+
+                            Log.d(TAG, different.get(0).getName());
+                            Log.d(TAG, different.get(1).getName());
+
                         }
                     }
                 }
             }
         }
         Double down = Math.floor(Differential);
-        String S = different.get(0).getName() + " has a greater potential than " + different.get(1).getName() + " by " + String.valueOf(down) + " points";
+        String S = "";
+        if(Differential == 0.0f){
+             S = "According to the algorithm you have the optimal defenders for this game week.";
+
+        }
+        else{
+             S = different.get(0).getName() + " has a greater potential than " + different.get(1).getName() + " by " + String.valueOf(Differential) + " points";
+        }
         Log.d(TAG, S);
         return S;
     }
@@ -99,19 +111,24 @@ public class ManagerTeam implements Serializable {
             float budget = Manager_Team.get(i).getCost() + itb;
             if(Manager_Team.get(i).getPosition() == 3){
                 for(int j = 0; j < Midfeilders.size();j++){
-                    if(budget >= Midfeilders.get(j).getCost() & !Players.contains(Midfeilders.get(j))){
+                    if(budget >= Midfeilders.get(j).getCost() & !Manager_Team.contains(Midfeilders.get(j))){
                         if(Midfeilders.get(j).getPredicted_points() - Manager_Team.get(i).getPredicted_points() > Differential){
                             different.clear();
                             Differential = Midfeilders.get(j).getPredicted_points() - Manager_Team.get(i).getPredicted_points();
                             different.add(Midfeilders.get(j));
                             different.add(Manager_Team.get(i));
+                            Log.d(TAG, "We are have found a midfeidler");
+
+                            Log.d(TAG, different.get(0).getName());
+                            Log.d(TAG, different.get(1).getName());
+
                         }
                     }
                 }
             }
         }
         Double down = Math.floor(Differential);
-        String S = different.get(0).getName() + " has a greater potential than " + different.get(1).getName() + " by " + String.valueOf(down) + " points";
+        String S = different.get(0).getName() + " has a greater potential than " + different.get(1).getName() + " by " + String.valueOf(Differential) + " points";
         Log.d(TAG, S);
         return S;
     }
@@ -129,25 +146,29 @@ public class ManagerTeam implements Serializable {
             float budget = Manager_Team.get(i).getCost() + itb;
             if(Manager_Team.get(i).getPosition() == 4){
                 for(int j = 0; j < Attackers.size();j++){
-                    if(budget >= Attackers.get(j).getCost() & !Players.contains(Attackers.get(j))){
+                    if(budget >= Attackers.get(j).getCost() & !Manager_Team.contains(Attackers.get(j))){
                         if(Attackers.get(j).getPredicted_points() - Manager_Team.get(i).getPredicted_points() > Differential){
                             different.clear();
                             Differential = Attackers.get(j).getPredicted_points() - Manager_Team.get(i).getPredicted_points();
                             different.add(Attackers.get(j));
                             different.add(Manager_Team.get(i));
+                            Log.d(TAG, "We are have found a attacker");
+
+
+                            Log.d(TAG, different.get(0).getName());
+                            Log.d(TAG, different.get(1).getName());
                         }
                     }
                 }
             }
         }
         Double down = Math.floor(Differential);
-        String S = different.get(0).getName() + " has a greater potential than " + different.get(1).getName() + " by " + String.valueOf(down) + " points";
+        String S = different.get(0).getName() + " has a greater potential than " + different.get(1).getName() + " by " + String.valueOf(Differential) + " points";
         Log.d(TAG, S);
         return S;
     }
 
     public void addAll(ArrayList<Player> players) {
         Players = players;
-
     }
 }

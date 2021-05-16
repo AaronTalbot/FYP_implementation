@@ -1,24 +1,34 @@
 package com.example.fyp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.example.fyp.Entity.GatherPlayers;
 import com.example.fyp.Entity.GlobalVariable;
 import com.example.fyp.Entity.ManagerTeam;
 import com.example.fyp.Entity.Player;
+import com.example.fyp.Team_input.Goalkeepers.Goalkeeper;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -33,8 +43,11 @@ public class OpeningPage extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private static final String TAG = "Main Activity";
-    private FirebaseAuth mAuth;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef, UserRef;
+    private FirebaseAuth Auth;
     private FirebaseUser user;
+    private String UID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,25 +60,55 @@ public class OpeningPage extends AppCompatActivity {
 
         FloatingActionButton fab = findViewById(R.id.ReturnFAB);
 
-        mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
-        String id = user.getUid();
+        Auth = FirebaseAuth.getInstance();
+        user = Auth.getCurrentUser();
+        UID = user.getUid();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference("Users");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                FindData(dataSnapshot);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        Log.d(TAG,"UID = " +  id);
+            }
+        });
 
-        Bundle extras = getIntent().getExtras();
-        if(extras != null){
-            User u = (User) getIntent().getSerializableExtra("User");
-            u.setUID(id);
-            FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance("https://final-year-project-dd795-default-rtdb.europe-west1.firebasedatabase.app/");
-            DatabaseReference UserRef = mFirebaseDatabase.getReference("Users");
-            DatabaseReference newUserRef = UserRef.push();
-
-            newUserRef.child("Fname").setValue(u.getFname());
-            newUserRef.child("Lname").setValue(u.getLname());
-            newUserRef.child("Email").setValue(u.getEmail());
-            newUserRef.child("UID").setValue(u.getUID());
+        boolean emailVerified = user.isEmailVerified();
+        
+        if(!emailVerified){
+            new AlertDialog.Builder(OpeningPage.this)
+                    .setTitle("Please ensure to verify email")
+                    .setMessage("Resend Email?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            user.sendEmailVerification()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.d(TAG, "Email sent.");
+                                            }
+                                        }
+                                    });
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which){
+                            dialog.dismiss();
+                            Toast.makeText(OpeningPage.this, "Your account will be deleted if email is not verified", Toast.LENGTH_SHORT).show();
+                        }
+                    }).show();
         }
+        else{
+            UserRef.child("Verified").setValue("True");
+        }
+        
+
 
 
 
@@ -128,5 +171,20 @@ public class OpeningPage extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+
+    private void FindData(DataSnapshot dataSnapshot) {
+        for(DataSnapshot ds : dataSnapshot.getChildren()){
+            if(ds.child("UID").getValue().equals(UID)){
+                UserRef = ds.getRef();
+                Log.d(TAG, "User Reference now equals data snapshot instance.");
+                break;
+            }
+            else{
+                Log.d(TAG, "User reference was not saved as ds reference");
+            }
+        }
+
     }
 }
