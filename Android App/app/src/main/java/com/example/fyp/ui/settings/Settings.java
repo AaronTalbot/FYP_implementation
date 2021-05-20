@@ -65,9 +65,6 @@ public class Settings extends AppCompatActivity {
         UID = user.getUid();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference("Users");
-        Email = findViewById(R.id.Email_Text_View);
-        Fname = findViewById(R.id.Fname_Text_View);
-        Lname = findViewById(R.id.Lname_Text_View);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

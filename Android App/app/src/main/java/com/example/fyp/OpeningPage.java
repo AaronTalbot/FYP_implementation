@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -171,6 +172,48 @@ public class OpeningPage extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if(item.getTitle() == "Return Home"){
+            RetunrHome();
+        }
+        else if(item.getTitle() == "Sign Out"){
+            SignOut();
+        }
+        else if(item.getTitle() == "About Us"){
+            AboutUs();
+        }
+        else{
+            return false;
+        }
+        return true;
+    }
+
+    private void AboutUs() {
+        Intent intent = new Intent(getApplicationContext(), AboutUs.class);
+        startActivity(intent);
+    }
+
+    private void SignOut() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+
+    }
+
+    private void RetunrHome() {
+        Intent intent = new Intent(getApplicationContext(), OpeningPage.class);
+        startActivity(intent);
+    }
+
+
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(0, v.getId(), 0, "Return Home");
+        menu.add(0, v.getId(), 0, "Sign Out");
+        menu.add(0, v.getId(), 0, "About Us");
     }
 
 

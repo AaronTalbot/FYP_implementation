@@ -67,9 +67,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         Register = findViewById(R.id.RegisterViewRegisterButton);
         if(user != null){
-//            TODO add activity change
-//            Intent i =
-//            startActivity();
+            OpenMainPage();
         }
 
         Register.setOnClickListener(new View.OnClickListener(){

@@ -51,9 +51,7 @@ public class ManagerTeam implements Serializable {
     }
 
 
-    public void populatelist(){
-        //TODO
-    }
+
 
     public String Defenders(){
         ArrayList<Player> Defenders = new ArrayList<Player>();
